@@ -59,6 +59,9 @@
     // collectionView 的相关属性
     float leftInset = (float)self.collectionView.contentInset.left;
     float topInset = (float)self.collectionView.contentInset.top;
+    if (@available(iOS 11, *)) {
+        topInset = (float)self.collectionView.adjustedContentInset.top;
+    }
     float firstRowHeight = [self.delegate layout:self heightOfRow:0];
     CGPoint contentOffset = self.collectionView.contentOffset;
     

@@ -81,7 +81,7 @@ static NSString * const reuseIdentifier = @"DemoContentCell";
     float columnWidth = [self layout:nil widthOfColumn:1];
     float collectionWidth = self.collectionView.bounds.size.width;
     int numberOfCellsInWidth = (int)ceilf((collectionWidth - firstColumnWidth) / columnWidth);
-    numberOfItemsPerSection = MAX(numberOfCellsInWidth + 1, numberOfColumns + 2);
+    numberOfItemsPerSection = MAX(numberOfCellsInWidth, numberOfColumns + 1);
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
