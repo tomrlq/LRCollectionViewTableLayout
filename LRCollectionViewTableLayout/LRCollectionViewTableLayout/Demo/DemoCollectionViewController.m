@@ -11,6 +11,10 @@
 #import "DemoHeader.h"
 #import "LRCollectionTableLayout.h"
 
+#define SCREEN_SIZE     [UIScreen mainScreen].bounds.size
+#define SCREEN_WIDTH    SCREEN_SIZE.width
+#define SCREEN_HEIGHT   SCREEN_SIZE.height
+
 typedef enum : unsigned int {
     ScrollDirectionNone,
     ScrollDirectionVertical,
@@ -39,7 +43,7 @@ static NSString * const reuseIdentifier = @"DemoContentCell";
     self = [super initWithCollectionViewLayout:tableLayout];
     if (self) {
         numberOfGroups = 5;
-        numberOfColumns = 2;
+        numberOfColumns = 15;
         numberOfRowsInGroup = malloc(sizeof(int) * numberOfGroups);
         for (int i = 0; i < numberOfGroups; i++) {
             numberOfRowsInGroup[i] = [self numberOfRowsInGroup:i];
@@ -138,10 +142,13 @@ static NSString * const reuseIdentifier = @"DemoContentCell";
     if (indexPath.section == 0) {
         if (indexPath.item == 0) {
             cell.label.text = @"固定";
+            cell.backgroundColor = [UIColor greenColor];
         } else if (indexPath.item <= numberOfColumns) {
             cell.label.text = [NSString stringWithFormat:@"车辆 %d", (int)indexPath.item - 1];
+            cell.backgroundColor = [UIColor cyanColor];
         } else {
             cell.label.text = nil;
+            cell.backgroundColor = [UIColor cyanColor];
         }
     } else {
         int group = 0;
@@ -155,10 +162,13 @@ static NSString * const reuseIdentifier = @"DemoContentCell";
         int column = (int)indexPath.item - 1;
         if (indexPath.item == 0) {
             cell.label.text = [NSString stringWithFormat:@"参数 %d", row];
+            cell.backgroundColor = [UIColor yellowColor];
         } else if (indexPath.item <= numberOfColumns) {
             cell.label.text = [NSString stringWithFormat:@"车辆：%d\n类别：%d\n参数：%d", column, group, row];
+            cell.backgroundColor = [UIColor whiteColor];
         } else {
             cell.label.text = nil;
+            cell.backgroundColor = [UIColor whiteColor];
         }
     }
     return cell;
@@ -247,25 +257,25 @@ static NSString * const reuseIdentifier = @"DemoContentCell";
 - (float)layout:(LRCollectionTableLayout *)tableLayout heightOfRow:(int)row {
     switch (row) {
         case 0:
-            return 60;
+            return 60 * SCREEN_WIDTH / 320.0;
         default:
-            return 40;
+            return 40 * SCREEN_WIDTH / 320.0;
     }
 }
 
 - (float)layout:(LRCollectionTableLayout *)tableLayout widthOfColumn:(int)column {
     switch (column) {
         case 0:
-            return 56;
+            return 56 * SCREEN_WIDTH / 320.0;
         default:
-            return 80;
+            return 80 * SCREEN_WIDTH / 320.0;
     }
 }
 
 - (float)layout:(LRCollectionTableLayout *)tableLayout heightForHeaderInRow:(int)row {
     for (int i = 0; i < numberOfGroups; i++) {
         if (row == beginRowOfGroup[i]) {
-            return 30;
+            return 30 * SCREEN_WIDTH / 320.0;
         } else if (row < beginRowOfGroup[i]) {
             return 0;
         }

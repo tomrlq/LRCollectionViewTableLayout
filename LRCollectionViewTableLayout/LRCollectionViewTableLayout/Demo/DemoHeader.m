@@ -13,7 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor magentaColor];
         CGRect headerRect = self.bounds;
         
         CGRect labelFrame = CGRectMake(16, 0,
