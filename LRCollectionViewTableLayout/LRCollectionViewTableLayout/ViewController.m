@@ -28,8 +28,7 @@
 
 - (IBAction)pushTo:(UIButton *)sender {
     DemoCollectionViewController *demoVC = [[DemoCollectionViewController alloc] initWithCollectionViewLayout:[UICollectionViewLayout new]];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:demoVC];
-    [self presentViewController:nav animated:YES completion:nil];
+    [self presentViewController:demoVC animated:YES completion:nil];
 }
 
 @end
